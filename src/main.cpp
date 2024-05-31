@@ -18,7 +18,8 @@ CRGB leds[NUM_LEDS];
 
 void lightSequence();
 
-void setup() {
+void setup()
+{
   // Configurar el pin del láser como salida
   pinMode(LASER_PIN, OUTPUT);
 
@@ -33,19 +34,23 @@ void setup() {
   digitalWrite(LASER_PIN, HIGH);
 }
 
-void loop() {
+void loop()
+{
   // Leer el valor analógico de la fotorresistencia
   int sensorValue = analogRead(LDR_PIN);
-  
+
   // Imprimir el valor en el monitor serie para depuración
   Serial.print("Valor del sensor: ");
   Serial.println(sensorValue);
-  
+
   // Verificar si el valor del sensor está por debajo del umbral
-  if (sensorValue > THRESHOLD) {
+  if (sensorValue > THRESHOLD)
+  {
     // Ejecutar secuencia de luces
     lightSequence();
-  } else {
+  }
+  else
+  {
     // Apagar la tira LED
     fill_solid(leds, NUM_LEDS, CRGB::Black);
     FastLED.show();
@@ -56,24 +61,29 @@ void loop() {
 }
 
 // Función para ejecutar una secuencia de luces
-void lightSequence() {
+void lightSequence()
+{
   // Secuencia de luces
-  for (int i = 0; i < NUM_LEDS; i++) {
+  for (int i = 0; i < NUM_LEDS; i++)
+  {
     leds[i] = CRGB::Red;
     FastLED.show();
-    delay(20);  // Ajusta el tiempo de retardo según la velocidad deseada
+    delay(20); // Ajusta el tiempo de retardo según la velocidad deseada
   }
-  for (int i = 0; i < NUM_LEDS; i++) {
+  for (int i = 0; i < NUM_LEDS; i++)
+  {
     leds[i] = CRGB::Green;
     FastLED.show();
     delay(20);
   }
-  for (int i = 0; i < NUM_LEDS; i++) {
+  for (int i = 0; i < NUM_LEDS; i++)
+  {
     leds[i] = CRGB::Blue;
     FastLED.show();
     delay(20);
   }
-  for (int i = 0; i < NUM_LEDS; i++) {
+  for (int i = 0; i < NUM_LEDS; i++)
+  {
     leds[i] = CRGB::Black;
     FastLED.show();
     delay(20);
